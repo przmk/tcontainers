@@ -10,7 +10,6 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.FileSystemResourceAccessor;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class LiquibaseInitializer {
 
@@ -26,15 +25,6 @@ public class LiquibaseInitializer {
             liquibase.update(new Contexts(), new LabelExpression());
         } catch (LiquibaseException e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
