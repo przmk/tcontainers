@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="pz" id="changelog-1.0">
+        <createSequence cycle="false" incrementBy="1" maxValue="1000" minValue="50" sequenceName="seq_name"
+                        startValue="50"/>
+
+        <createTable tableName="book">
+            <column name="id" type="bigint" defaultValueSequenceNext="seq_name">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="publisher" type="varchar(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="category" type="varchar(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+
+        </createTable>
+        <insert tableName="book">
+            <column name="id">1</column>
+            <column name="title">Harry Potter</column>
+            <column name="publisher">Znak</column>
+            <column name="category">fantasy</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">2</column>
+            <column name="title">Podstawy javy</column>
+            <column name="publisher">Helion</column>
+            <column name="category">programming</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
