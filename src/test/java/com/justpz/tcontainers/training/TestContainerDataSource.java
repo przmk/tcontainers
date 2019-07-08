@@ -5,7 +5,6 @@ import org.postgresql.ds.PGSimpleDataSource;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 public class TestContainerDataSource extends DataSourceFactory {
     private final PostgreSQLContainer postgreSQLContainer;
@@ -15,7 +14,7 @@ public class TestContainerDataSource extends DataSourceFactory {
     }
 
     @Override
-    public DataSource getDataSource() throws SQLException {
+    public DataSource getDataSource() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setURL(postgreSQLContainer.getJdbcUrl());
         dataSource.setDatabaseName(postgreSQLContainer.getDatabaseName());

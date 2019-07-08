@@ -12,6 +12,5 @@ abstract class AbstractContainerBaseTest {
                 .withUsername("foo")
                 .withPassword("secret");
         postgresqlContainer.start();
-
     }
 }
