@@ -1,7 +1,9 @@
 package com.justpz.tcontainers.training;
 
+import com.justpz.tcontainers.training.db.DataSourceFactory;
 import com.justpz.tcontainers.training.db.LiquibaseInitializer;
 import org.junit.jupiter.api.*;
+import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -18,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BookRepositoryTest {
     @Container
-    private static final PostgreSQLContainer postgresqlContainer = new PostgreSQLContainer()
+    private static final JdbcDatabaseContainer DATABASE_CONTAINER = new PostgreSQLContainer()
             .withDatabaseName("foo")
             .withUsername("foo")
             .withPassword("secret");
@@ -26,11 +28,11 @@ class BookRepositoryTest {
 
     @BeforeAll
     void init() throws SQLException {
-        try (Connection connection = postgresqlContainer.createConnection("")) {
+        try (Connection connection = DATABASE_CONTAINER.createConnection("")) {
             LiquibaseInitializer.init(connection);
         }
-        TestContainerDataSource dataSource = new TestContainerDataSource(postgresqlContainer);
-        this.bookRepository = new BookRepository(dataSource);
+        DataSourceFactory dataSourceFactory = new TestContainerDataSourceFactory(DATABASE_CONTAINER);
+        this.bookRepository = new BookRepository(dataSourceFactory);
     }
 
     @Order(1)

@@ -1,16 +1,17 @@
 package com.justpz.tcontainers.training;
 
+import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 abstract class AbstractContainerBaseTest {
 
-    static final PostgreSQLContainer postgresqlContainer;
+    static final JdbcDatabaseContainer DATABASE_CONTAINER;
 
     static {
-        postgresqlContainer = new PostgreSQLContainer()
+        DATABASE_CONTAINER = new PostgreSQLContainer()
                 .withDatabaseName("foo")
                 .withUsername("foo")
                 .withPassword("secret");
-        postgresqlContainer.start();
+        DATABASE_CONTAINER.start();
     }
 }

@@ -18,10 +18,10 @@ class BookRepositoryGlobalTest extends AbstractContainerBaseTest {
 
     @BeforeEach
     void setUp() throws SQLException {
-        try (Connection connection = postgresqlContainer.createConnection("")) {
+        try (Connection connection = DATABASE_CONTAINER.createConnection("")) {
             LiquibaseInitializer.init(connection);
         }
-        TestContainerDataSource dataSource = new TestContainerDataSource(postgresqlContainer);
+        TestContainerDataSourceFactory dataSource = new TestContainerDataSourceFactory(DATABASE_CONTAINER);
         this.bookRepository = new BookRepository(dataSource);
     }
 
