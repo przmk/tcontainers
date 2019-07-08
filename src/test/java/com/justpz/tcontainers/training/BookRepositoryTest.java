@@ -29,10 +29,6 @@ class BookRepositoryTest {
         try (Connection connection = postgresqlContainer.createConnection("")) {
             LiquibaseInitializer.init(connection);
         }
-    }
-
-    @BeforeEach
-    void setUp() throws SQLException {
         TestContainerDataSource dataSource = new TestContainerDataSource(postgresqlContainer);
         this.bookRepository = new BookRepository(dataSource);
     }
