@@ -26,20 +26,21 @@ class BookRepositoryGlobalTest extends AbstractContainerBaseTest {
     }
 
     @Test
-    void test() {
+    void shouldGetInitValuesFromDatabase() {
         List<String> strings = bookRepository.getAll();
         assertEquals(2, strings.size());
     }
 
     @Test
-    void test2() {
-        bookRepository.insert("Dupa");
+    void shouldInsertNewValueToDatabase() {
+        int insert = bookRepository.insert("Dupa");
+        assertEquals(1, insert);
         List<String> strings = bookRepository.getAll();
         assertEquals(3, strings.size());
     }
 
     @Test
-    void test3() {
+    void shouldGetInitWithoutValuesFromPreviousTest() {
         List<String> strings = bookRepository.getAll();
         assertEquals(2, strings.size());
     }
