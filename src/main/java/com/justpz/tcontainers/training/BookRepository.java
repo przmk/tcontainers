@@ -32,11 +32,11 @@ public class BookRepository {
         }
     }
 
-    boolean insert(String title) {
+    int insert(String title) {
         try (Connection conn = dataSource.getConnection()) {
             final PreparedStatement preparedStatement = conn.prepareStatement("insert into book (title) values (?)");
             preparedStatement.setString(1, title);
-            return preparedStatement.execute();
+            return preparedStatement.executeUpdate();
 
         } catch (SQLException sqle) {
             throw new RuntimeException("Error reading message", sqle);
