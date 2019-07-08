@@ -1,6 +1,5 @@
-package com.justpz.tcontainers.training;
+package com.justpz.tcontainers.basic;
 
-import com.justpz.tcontainers.training.db.DataSourceFactory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

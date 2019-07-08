@@ -1,6 +1,5 @@
-package com.justpz.tcontainers.training;
+package com.justpz.tcontainers.basic;
 
-import com.justpz.tcontainers.training.db.DataSourceFactory;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 

@@ -6,7 +6,11 @@
 
     <groupId>com.justpz</groupId>
     <artifactId>t-containers</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>basic</module>
+    </modules>
     <properties>
         <version.testcontainers>1.11.3</version.testcontainers>
         <version.postgresql>42.2.6</version.postgresql>
@@ -21,6 +25,12 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${version.junit}</version>
@@ -32,31 +42,6 @@
             <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${version.postgresql}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${version.testcontainers}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${version.testcontainers}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>${version.liquibase}</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>

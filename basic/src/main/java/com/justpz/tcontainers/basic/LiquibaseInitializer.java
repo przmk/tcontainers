@@ -1,4 +1,4 @@
-package com.justpz.tcontainers.training.db;
+package com.justpz.tcontainers.basic;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;

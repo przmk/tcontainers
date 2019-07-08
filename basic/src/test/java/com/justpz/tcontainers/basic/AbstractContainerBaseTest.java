@@ -1,4 +1,4 @@
-package com.justpz.tcontainers.training;
+package com.justpz.tcontainers.basic;
 
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
