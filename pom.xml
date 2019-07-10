@@ -10,12 +10,14 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>basic</module>
+        <module>hibernate-db</module>
     </modules>
     <properties>
         <version.testcontainers>1.11.3</version.testcontainers>
         <version.postgresql>42.2.6</version.postgresql>
         <version.junit>5.5.0</version.junit>
         <version.liquibase>3.6.3</version.liquibase>
+        <version.hibernate>5.4</version.hibernate>
     </properties>
     <dependencies>
         <dependency>
@@ -41,6 +43,11 @@
             <artifactId>junit-jupiter-params</artifactId>
             <version>${version.junit}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${version.junit}</version>
         </dependency>
     </dependencies>
     <build>
