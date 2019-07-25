@@ -14,18 +14,18 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${version.testcontainers}</version>
+            <version>${testcontainers.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${version.postgresql}</version>
+            <version>${postgresql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>${version.liquibase}</version>
+            <version>${liquibase.version}</version>
         </dependency>
     </dependencies>
 
