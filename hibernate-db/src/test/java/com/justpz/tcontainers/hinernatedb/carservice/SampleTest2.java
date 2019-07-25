@@ -1,6 +1,8 @@
 package com.justpz.tcontainers.hinernatedb.carservice;
 
-import org.junit.Test;
+
+import com.justpz.tcontainers.hinernatedb.BaseJpaTest;
+import org.junit.jupiter.api.Test;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
