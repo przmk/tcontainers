@@ -45,11 +45,11 @@ public class SampleTest extends BaseJpaTest {
     @TestFactory
     @DisplayName("Test factory 🏭")
     Stream<DynamicNode> dynamicTestsWithContainers() {
-        return Stream.of("A", "B", "C", "🐭", null)
+        return Stream.of("A", "B", "C", "🐭")
                 .map(input -> dynamicContainer("Container " + input, Stream.of(
                         dynamicTest("not null", () -> assertNotNull(input)),
                         dynamicContainer("properties", Stream.of(
-                                dynamicTest("length > 0", () -> assertTrue(input.length() >= 0)),
+                                dynamicTest("length > 0", () -> assertTrue(input.length() > 0)),
                                 dynamicTest("not empty", () -> assertFalse(input.isEmpty()))
                         ))
                 )));
