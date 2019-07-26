@@ -1,4 +1,4 @@
-package com.justpz.tcontainers.basic;
+package com.justpz.tcontainers.basic.db;
 
 import org.postgresql.ds.PGSimpleDataSource;
 

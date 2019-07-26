@@ -1,5 +1,6 @@
 package com.justpz.tcontainers.basic;
 
+import com.justpz.tcontainers.basic.db.LiquibaseInitializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.junit.jupiter.Testcontainers;

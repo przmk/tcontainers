@@ -1,5 +1,7 @@
 package com.justpz.tcontainers.basic;
 
+import com.justpz.tcontainers.basic.db.DataSourceFactory;
+import com.justpz.tcontainers.basic.db.LiquibaseInitializer;
 import org.junit.jupiter.api.*;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
