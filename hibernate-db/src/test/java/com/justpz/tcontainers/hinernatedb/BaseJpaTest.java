@@ -38,7 +38,7 @@ public abstract class BaseJpaTest {
     }
 
     @Container
-    public static PostgreSQLContainer postgreSQLContainer;
+    private static PostgreSQLContainer postgreSQLContainer;
 
     static {
         postgreSQLContainer = new PostgreSQLContainer()
