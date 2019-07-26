@@ -1,4 +1,4 @@
-package com.justpz.tcontainers.hinernatedb.carservice;
+package com.justpz.tcontainers.hinernatedb.carservice.tcontainersdatasource;
 
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectClasses;

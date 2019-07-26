@@ -1,6 +1,6 @@
-package com.justpz.tcontainers.hinernatedb.carservice;
+package com.justpz.tcontainers.hinernatedb.carservice.tcontainersdatasource;
 
-import com.justpz.tcontainers.hinernatedb.BaseJpaTest;
+import com.justpz.tcontainers.hinernatedb.carservice.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

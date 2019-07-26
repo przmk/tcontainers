@@ -1,4 +1,4 @@
-package com.justpz.tcontainers.hinernatedb;
+package com.justpz.tcontainers.hinernatedb.carservice.tcontainersdatasource;
 
 import ch.qos.logback.classic.LoggerContext;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,9 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ActiveProfiles;
@@ -27,11 +24,11 @@ import java.lang.invoke.MethodHandles;
 import java.util.UUID;
 
 @SpringBootTest
-@SpringJUnitConfig(value = BaseJpaTest.Config.class, initializers = {BaseJpaTest.Initializer.class})
+@SpringJUnitConfig(value = BaseJpaTest.Config.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Testcontainers
-@ActiveProfiles("test")
-public abstract class BaseJpaTest {
+@ActiveProfiles("test-tc-ds")
+abstract class BaseJpaTest {
     @Container
     private static final PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer()
             .withDatabaseName("integration-tests-db")
@@ -44,14 +41,6 @@ public abstract class BaseJpaTest {
         loggerContext.setMaxCallerDataDepth(30);
     }
 
-    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            TestPropertyValues.of(
-                    "spring.datasource.username=" + postgreSQLContainer.getUsername(),
-                    "spring.datasource.password=" + postgreSQLContainer.getPassword()
-            ).applyTo(configurableApplicationContext.getEnvironment());
-        }
-    }
 
     @Configuration
     @ComponentScan("com.justpz.tcontainers.hinernatedb")
