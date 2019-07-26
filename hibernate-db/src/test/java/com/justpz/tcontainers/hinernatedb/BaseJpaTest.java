@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -23,13 +24,19 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.lang.invoke.MethodHandles;
+import java.util.UUID;
 
 @SpringBootTest
 @SpringJUnitConfig(value = BaseJpaTest.Config.class, initializers = {BaseJpaTest.Initializer.class})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Testcontainers
+@ActiveProfiles("test")
 public abstract class BaseJpaTest {
-
+    @Container
+    private static final PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer()
+            .withDatabaseName("integration-tests-db")
+            .withUsername(UUID.randomUUID().toString())
+            .withPassword(UUID.randomUUID().toString());
     protected static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     static {
@@ -37,18 +44,7 @@ public abstract class BaseJpaTest {
         loggerContext.setMaxCallerDataDepth(30);
     }
 
-    @Container
-    private static PostgreSQLContainer postgreSQLContainer;
-
-    static {
-        postgreSQLContainer = new PostgreSQLContainer()
-                .withDatabaseName("integration-tests-db")
-                .withUsername("sa")
-                .withPassword("sa");
-    }
-
-    static class Initializer
-            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
         public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
             TestPropertyValues.of(
                     "spring.datasource.username=" + postgreSQLContainer.getUsername(),
@@ -57,11 +53,15 @@ public abstract class BaseJpaTest {
         }
     }
 
+    @Configuration
+    @ComponentScan("com.justpz.tcontainers.hinernatedb")
+    static class Config {
+    }
+
     @PersistenceContext
     protected EntityManager em;
     @Autowired
     public TransactionTemplate transactionTemplate;
-
 
     protected void doInTransaction(final Runnable runnable) {
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
@@ -70,10 +70,5 @@ public abstract class BaseJpaTest {
                 runnable.run();
             }
         });
-    }
-
-    @Configuration
-    @ComponentScan("com.justpz.tcontainers.hinernatedb")
-    public static class Config {
     }
 }
